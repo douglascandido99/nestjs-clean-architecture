@@ -23,10 +23,11 @@ export type SearchResultProps<E extends Entity, Filter> = {
 
 export interface SearchableRepositoryInterface<
   E extends Entity,
-  SearchInput,
-  SearchOutput,
+  Filter = string,
+  SearchInput = SearchParams,
+  SearchOutput = SearchResult<E, Filter>,
 > extends RepositoryInterface<E> {
-  search(props: SearchParams): Promise<SearchOutput>
+  search(props: SearchInput): Promise<SearchOutput>
 }
 
 export class SearchParams {
@@ -115,7 +116,7 @@ export class SearchResult<E extends Entity, Filter = string> {
 
   constructor(props: SearchResultProps<E, Filter>) {
     this.items = props.items
-    this.total = props.currentPage
+    this.total = props.total
     this.currentPage = props.currentPage
     this.perPage = props.perPage
     this.lastPage = Math.ceil(this.total / this.perPage)
