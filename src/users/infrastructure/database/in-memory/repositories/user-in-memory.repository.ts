@@ -1,6 +1,6 @@
 import { ConflictError } from '@/shared/domain/errors/conflict-error'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
-import { SearchableInMemoryRepository } from '@/shared/domain/repositories/searchable-in-memory-repository.ts'
+import { SearchableInMemoryRepository } from '@/shared/domain/repositories/searchable-in-memory-repository'
 import { UserEntity } from '@/users/domain/entities/user.entity'
 import { UserRepositoryInterface } from '@/users/domain/repositories/user.repository.interface'
 
@@ -8,6 +8,12 @@ export class InMemoryUserRepository
   extends SearchableInMemoryRepository<UserEntity>
   implements UserRepositoryInterface
 {
+  protected applyFilter(
+    items: UserEntity[],
+    filter: string,
+  ): Promise<UserEntity[]> {
+    throw new Error('Method not implemented.')
+  }
   async findByEmail(email: string): Promise<UserEntity> {
     const entity = this.items.find(item => item.email === email)
     if (!entity) {
