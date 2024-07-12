@@ -14,7 +14,7 @@ export class InMemoryUserRepository
   async findByEmail(email: string): Promise<UserEntity> {
     const entity = this.items.find(item => item.email === email)
     if (!entity) {
-      throw new NotFoundError('Entity not found')
+      throw new NotFoundError(`Entity not found using email ${email}`)
     }
     return entity
   }
