@@ -2,8 +2,6 @@ import { InMemoryUserRepository } from '@/users/infrastructure/database/in-memor
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
 import { UserEntity } from '@/users/domain/entities/user.entity'
 import { UserDataBuilder } from '@/users/domain/testing/helpers/user-data-builder'
-import { UpdateUserUseCase } from '../../update-user.usecase'
-import { BadRequestError } from '@/shared/application/errors/bad-request-error'
 import { UpdatePasswordUseCase } from '../../update-password.usecase'
 import { HashProvider } from '@/shared/application/providers/hash-provider'
 import { BcryptjsHashProvider } from '@/users/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
